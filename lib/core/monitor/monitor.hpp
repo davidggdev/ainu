@@ -11,5 +11,19 @@
  */
 #ifndef MONITOR_HPP
 #define MONITOR_HPP
+
+/** @brief Librarys */
 #include "../../startup.hpp"
+
+/** @brief Namespace class */
+namespace Ainu
+{
+    /** @brief Monitor */
+    class Monitor
+    {
+    public: 
+        void init(); 
+        string get_uptime();
+    };
+}
 #endif

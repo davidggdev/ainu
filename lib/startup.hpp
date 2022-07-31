@@ -14,6 +14,10 @@
 
 /** @brief Librarys */
 #include <iostream>
+#include <thread>
+#include <unistd.h>
+#include <fstream>
+#include <cmath>
 
 /** @brief Namespaces */
 using namespace std;

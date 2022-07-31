@@ -15,5 +15,8 @@ MONITOR_FLAG = lib/core/monitor/monitor.cpp
 SERVER_FLAG = lib/core/server/server.cpp
 UTILS_FLAG = lib/core/utils/utils.cpp
 
+# Librarys compiled
+PTHREAD = -pthread
+
 all:
-	g++ -o $(APP_BIN) $(APP_MAIN) $(MONITOR_FLAG) $(SERVER_FLAG) $(UTILS_FLAG)
+	g++ -o $(APP_BIN) $(APP_MAIN) $(MONITOR_FLAG) $(SERVER_FLAG) $(UTILS_FLAG) $(PTHREAD)
