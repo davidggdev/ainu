@@ -6,5 +6,14 @@
 # @license GPL
 # @license https://opensource.org/licenses/gpl-license.php GNU Public License 
 
+# Application 
+APP_MAIN = ainu.cpp
+APP_BIN = bin/ainu
+
+# Librarys
+MONITOR_FLAG = lib/core/monitor/monitor.cpp
+SERVER_FLAG = lib/core/server/server.cpp
+UTILS_FLAG = lib/core/utils/utils.cpp
+
 all:
-	g++ -o bin/ainu ainu.cpp
+	g++ -o $(APP_BIN) $(APP_MAIN) $(MONITOR_FLAG) $(SERVER_FLAG) $(UTILS_FLAG)

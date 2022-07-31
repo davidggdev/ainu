@@ -17,9 +17,8 @@
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License 
  */
-#include <iostream>
 
-using namespace std;
+#include "lib/startup.hpp"
 
 int main()
 {
