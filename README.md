@@ -12,5 +12,5 @@
 ## Dependencies
 
 - jsoncpp
-- The best implementation to handle json types on c++ is in [jsoncpp](https://github.com/open-source-parsers/jsoncpp). Serialize an deseralize to array objects to handle data, load
+    - The best implementation to handle json types on c++ is in [jsoncpp](https://github.com/open-source-parsers/jsoncpp). Serialize an deseralize to array objects to handle data, load
 file configurations, etc...
