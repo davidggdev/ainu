@@ -1,0 +1,1 @@
+- Log de texto para sucesos/acciones

@@ -4,7 +4,7 @@
  * @file lib/core/server/server.hpp
  * @author David (dev@davidggdev.es)
  * @brief Server
- * @version 0.1
+ * @version 0.2
  * @date 2022-07-31
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License
@@ -22,7 +22,7 @@ namespace Ainu
     class Server
     {
     public:   
-        void init();
+        void init(string verbose);
         void startServer();   
     };
 }

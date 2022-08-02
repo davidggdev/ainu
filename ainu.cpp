@@ -12,7 +12,7 @@
  * @file ainu.cpp
  * @author David (dev@davidggdev.es)
  * @brief Server monitoring service
- * @version 0.1
+ * @version 0.2
  * @date 2022-07-31
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License
@@ -20,7 +20,6 @@
 
 /** @brief Librarys */
 #include "lib/startup.hpp"
-
 #include "lib/core/utils/utils.hpp"
 #include "lib/core/server/server.hpp"
 #include "lib/core/monitor/monitor.hpp"
@@ -28,19 +27,19 @@
 /**
  * @brief Init microservice to Serve
  */
-void initThreadServer()
+void initThreadServer(string argumentsParameters)
 {
     Ainu::Server AinuServer;
-    AinuServer.init();
+    AinuServer.init(argumentsParameters);
 }
 
 /**
  * @brief Init microservice to Serve
  */
-void initThreadMonitor()
+void initThreadMonitor(string argumentsParameters)
 {
     Ainu::Monitor AinuMonitor;
-    AinuMonitor.init();
+    AinuMonitor.init(argumentsParameters);
 }
 
 /**
@@ -48,13 +47,24 @@ void initThreadMonitor()
  *
  * @return int 0
  */
-int main()
-{  
+int main(int argc, char **argv)
+{
+    cout << "Ainu monitor server v0.2" << endl;
     /**
-     * Threads microservices
+     * @brief Handle arguments on init
      */
-    thread AinuServerThread(initThreadServer);
-    thread AinuMonitorThread(initThreadMonitor);
+    string argumentsParameters;
+    if (argc > 1)
+    {
+        cout << "Verbose mode" << endl;
+        argumentsParameters = (strcmp(argv[1], "-v") == 0) ? "-v" : "";
+    }
+
+    /**
+     * @brief Threads microservices
+     */
+    thread AinuServerThread(initThreadServer, argumentsParameters);
+    thread AinuMonitorThread(initThreadMonitor, argumentsParameters);
 
     /**
      * @brief Prevent if AinuServerThread is free

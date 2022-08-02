@@ -4,7 +4,7 @@
  * @file lib/core/server/server.cpp
  * @author David (dev@davidggdev.es)
  * @brief Server
- * @version 0.1
+ * @version 0.2
  * @date 2022-07-31
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License
@@ -24,13 +24,15 @@
 using namespace Ainu;
 using namespace std;
 
-void Server::init()
+void Server::init(string verbose)
 {
     this->startServer();
 }
 
 void Server::startServer()
 {
+    cout << "Server init!" << endl;
+
     // declare variables
     // the port number
     int port = 9090;
@@ -118,15 +120,10 @@ void Server::startServer()
 
         // set the array to all zeros
         memset(&data, 0, sizeof(data));
-
-        Ainu::Utils utils;
-        string buffer = utils.loadFile("c.json");
-       
-        // message to send
-        char msg[] = "HTTP/1.1 200 OK\r\n\r\n"
-                     "[{ \"response\" : \"success\"}]";
-
-        string message = "HTTP/1.1 200 OK\r\n\r\n[{ \"response\" : \"success\"}]" + buffer;
+ 
+        // message to send 
+        string responseMonitoring = Utils::loadFile("settings_save.json");
+        string message = "HTTP/1.1 200 OK\r\n\r\n" + responseMonitoring;
 
         // send the client a message
         if (write(connfd, message.c_str(), message.length()) < 0)

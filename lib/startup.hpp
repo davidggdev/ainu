@@ -4,7 +4,7 @@
  * @file ainu.cpp
  * @author David (dev@davidggdev.es)
  * @brief Server monitoring service
- * @version 0.1
+ * @version 0.2
  * @date 2022-07-31
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -18,6 +18,8 @@
 #include <unistd.h>
 #include <fstream>
 #include <cmath>
+#include <sys/sysinfo.h>
+#include <jsoncpp/json/json.h>  
 
 /** @brief Namespaces */
 using namespace std;

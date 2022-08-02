@@ -4,7 +4,7 @@
  * @file lib/core/monitor/monitor.hpp
  * @author David (dev@davidggdev.es)
  * @brief Monitor
- * @version 0.1
+ * @version 0.2
  * @date 2022-07-31
  * @license GPL
  * @license https://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -22,8 +22,9 @@ namespace Ainu
     class Monitor
     {
     public: 
-        void init(); 
-        string get_uptime();
+        void init(string verbose); 
+        Json::Value getMemoryGroup();
+        Json::Value getMysqlGroup();
     };
 }
 #endif
