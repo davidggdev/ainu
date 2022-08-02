@@ -1,1 +1,4 @@
-- Log de texto para sucesos/acciones
+- arreglar json de salida al endpoint
+- log de texto para sucesos/acciones
+- refactorizar server
+- crear clase settings

@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <cmath>
+#include <regex>
 #include <sys/sysinfo.h>
 #include <jsoncpp/json/json.h>  
 

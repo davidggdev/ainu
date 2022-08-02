@@ -25,8 +25,7 @@ void Monitor::init(string verbose)
    }
 
     for (;;)
-    {
-        
+    { 
         if(verbose.compare("-v")== 0){
             cout << "Monitor Tick" << endl; 
             if(Utils::appendObj2Json(this->getMemoryGroup(), "settings_save.json")){
@@ -35,9 +34,8 @@ void Monitor::init(string verbose)
             if(Utils::appendObj2Json(this->getMysqlGroup(), "settings_save.json")){
                 cout << "Mysql check [X]" << endl;
             } 
-        }
-        
-        sleep(2);
+        } 
+        sleep(10);
     }
 }
 

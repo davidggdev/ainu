@@ -31,7 +31,7 @@ void Server::init(string verbose)
 
 void Server::startServer()
 {
-    cout << "Server init!" << endl;
+    cout << "Server init on 192.168.1.6:9090" << endl;
 
     // declare variables
     // the port number
@@ -95,9 +95,7 @@ void Server::startServer()
 
     // wait forever for connections to come
     while (true)
-    {
-        cerr << "\nWaiting for someone to connect..\n";
-
+    { 
         // a structure to store the client address
         if ((connfd = accept(listenfd, (sockaddr *)&cliAddr, &cliLen)) < 0)
         {
@@ -115,15 +113,28 @@ void Server::startServer()
         // NULL terminate the received string
         data[numRead] = '\0';
 
-        cerr << "\nRECEIVED: '" << data << "' from the client\n";
-        // cerr<<"Bytes read: "<<numRead<<endl;
+        // Endpoints definition and handle first approach
+        string endpoint;
+        string regExprStr("GET\\s(.*)\\sHTTP");
+        regex rgx(regExprStr);
+        cmatch smatch;
 
-        // set the array to all zeros
-        memset(&data, 0, sizeof(data));
- 
-        // message to send 
-        string responseMonitoring = Utils::loadFile("settings_save.json");
-        string message = "HTTP/1.1 200 OK\r\n\r\n" + responseMonitoring;
+        if (std::regex_search(data, smatch, rgx))
+            endpoint = smatch[1];
+        remove(endpoint.begin(), endpoint.end() - 1, ' ');
+
+        string message;
+        if (strcmp(endpoint.c_str(), "/get") == 0)
+        {
+            string responseMonitoring = Utils::loadFile("settings_save.json");
+            message = "HTTP/1.1 200 OK\r\n\r\n" + responseMonitoring;
+             cerr << "\nRequest end\n";
+        }
+        else
+        { 
+            message = "HTTP/1.1 404 OK\r\n\r\n[{\"Error\":\"404 Not found\"}]";
+             cerr << "\nPetition disallow!\n";
+        }
 
         // send the client a message
         if (write(connfd, message.c_str(), message.length()) < 0)
@@ -131,6 +142,9 @@ void Server::startServer()
             perror("write");
             exit(1);
         }
+
+        // set the array to all zeros
+        memset(&data, 0, sizeof(data));
 
         // close the socket
         close(connfd);
